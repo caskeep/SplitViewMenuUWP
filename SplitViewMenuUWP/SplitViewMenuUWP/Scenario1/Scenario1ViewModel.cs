@@ -2,22 +2,19 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using SplitViewMenu;
-using SplitViewMenuUWP.Scenario1;
 
-namespace SplitViewMenuUWP
+namespace SplitViewMenuUWP.Scenario1
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class Scenario1ViewModel : INotifyPropertyChanged
     {
-        public MainViewModel()
+        public Scenario1ViewModel()
         {
             MenuItems = new ObservableCollection<SimpleNavMenuItem>();
             InitialPage = typeof (Scenario1Page1);
         }
 
         public ObservableCollection<SimpleNavMenuItem> MenuItems { get; }
-
-        public Type  InitialPage { get; }
-
+        public Type InitialPage { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName = null)

@@ -62,7 +62,8 @@ namespace SplitViewMenu
             {
                 cont.IsSelected = false;
             }
-            item.IsSelected = true;
+            if (item != null)
+                item.IsSelected = true;
         }
 
         public event EventHandler<ListViewItem> ItemInvoked;

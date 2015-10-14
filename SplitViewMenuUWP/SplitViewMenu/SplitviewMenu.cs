@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 namespace SplitViewMenu
 {
     public sealed class SplitViewMenu : Control
     {
+        internal static readonly DependencyProperty MenuItemDataTemplateSelectorProperty =
+            DependencyProperty.Register("MenuItemDataTemplateSelector", typeof (DataTemplateSelector),
+                typeof (SplitViewMenu), new PropertyMetadata(null));
+
+        internal static readonly DependencyProperty NavMenuItemTemplateProperty =
+            DependencyProperty.Register("NavMenuItemTemplate", typeof (DataTemplate), typeof (SplitViewMenu),
+                new PropertyMetadata(null));
+
+        internal static readonly DependencyProperty NavMenuItemContainerStyleProperty =
+            DependencyProperty.Register("NavMenuItemContainerStyle", typeof (Style), typeof (SplitViewMenu),
+                new PropertyMetadata(null));
+
         internal static readonly DependencyProperty InitialPageProperty =
             DependencyProperty.Register("InitialPage", typeof (Type), typeof (SplitViewMenu),
                 new PropertyMetadata(null));
@@ -24,8 +34,6 @@ namespace SplitViewMenu
         private Button _backButton;
         private NavMenuListView _navMenuListView;
         private Frame _pageFrame;
-        private SplitView _rootSplitView;
-        private ToggleButton _togglePaneButton;
 
         public SplitViewMenu()
         {
@@ -33,11 +41,22 @@ namespace SplitViewMenu
             Loaded += OnSplitViewMenuLoaded;
         }
 
-        private void OnSplitViewMenuLoaded(object sender, RoutedEventArgs e)
+        public DataTemplateSelector MenuItemDataTemplateSelector
         {
-            if (InitialPage == null || _pageFrame == null)
-                return;
-            _pageFrame.Navigate(InitialPage);
+            get { return (DataTemplateSelector) GetValue(MenuItemDataTemplateSelectorProperty); }
+            set { SetValue(MenuItemDataTemplateSelectorProperty, value); }
+        }
+
+        public DataTemplate NavMenuItemTemplate
+        {
+            get { return (DataTemplate) GetValue(NavMenuItemTemplateProperty); }
+            set { SetValue(NavMenuItemTemplateProperty, value); }
+        }
+
+        public Style NavMenuItemContainerStyle
+        {
+            get { return (Style) GetValue(NavMenuItemContainerStyleProperty); }
+            set { SetValue(NavMenuItemContainerStyleProperty, value); }
         }
 
         public Type InitialPage
@@ -52,7 +71,12 @@ namespace SplitViewMenu
             set { SetValue(NavigationItemsProperty, value); }
         }
 
-        public Rect TogglePaneButtonRect { get; private set; }
+        private void OnSplitViewMenuLoaded(object sender, RoutedEventArgs e)
+        {
+            if (InitialPage == null || _pageFrame == null)
+                return;
+            _pageFrame.Navigate(InitialPage);
+        }
 
         private static void OnNavigationItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -61,19 +85,14 @@ namespace SplitViewMenu
                 menu._navMenuListView.ItemsSource = e.NewValue;
         }
 
-        public event TypedEventHandler<SplitViewMenu, Rect> TogglePaneButtonRectChanged;
-
         protected override void OnApplyTemplate()
         {
             _pageFrame = GetTemplateChild("PageFrame") as Frame;
-            _rootSplitView = GetTemplateChild("RootSplitView") as SplitView;
             _navMenuListView = GetTemplateChild("NavMenuList") as NavMenuListView;
             _backButton = GetTemplateChild("BackButton") as Button;
-            _togglePaneButton = GetTemplateChild("TogglePaneButton") as ToggleButton;
 
             if (_navMenuListView != null)
             {
-                _navMenuListView.ItemsSource = NavigationItems;
                 _navMenuListView.ItemInvoked += OnNavMenuItemInvoked;
                 _navMenuListView.ContainerContentChanging += OnContainerContextChanging;
             }
@@ -106,7 +125,7 @@ namespace SplitViewMenu
             _pageFrame.GoBack();
         }
 
-        private void OnContainerContextChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+        private static void OnContainerContextChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
             if (!args.InRecycleQueue && args.Item is INavigationMenuItem)
             {
@@ -132,27 +151,6 @@ namespace SplitViewMenu
         {
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= PageLoaded;
-            CheckTogglePaneButtonSizeChanged();
-        }
-
-        private void CheckTogglePaneButtonSizeChanged()
-        {
-            if (_rootSplitView.DisplayMode == SplitViewDisplayMode.Inline ||
-                _rootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
-            {
-                var transform = _togglePaneButton.TransformToVisual(this);
-                var rect =
-                    transform.TransformBounds(new Rect(0, 0, _togglePaneButton.ActualWidth,
-                        _togglePaneButton.ActualHeight));
-                TogglePaneButtonRect = rect;
-            }
-            else
-            {
-                TogglePaneButtonRect = new Rect();
-            }
-
-            var handler = TogglePaneButtonRectChanged;
-            handler?.DynamicInvoke(this, TogglePaneButtonRect);
         }
 
         private void OnNavigatingToPage(object sender, NavigatingCancelEventArgs e)

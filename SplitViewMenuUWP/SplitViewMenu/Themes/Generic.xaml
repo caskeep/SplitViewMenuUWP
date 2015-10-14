@@ -117,15 +117,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PageTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="CharacterSpacing" Value="75" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Margin" Value="12, 14, 12, 4" />
-    </Style>
-
     <Style x:Key="NavigationBackButtonStyle" TargetType="Button"
            BasedOn="{StaticResource NavigationBackButtonNormalStyle}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -154,6 +145,8 @@
         <Setter Property="MinWidth" Value="{StaticResource SplitViewCompactPaneThemeLength}" />
         <Setter Property="Height" Value="48" />
         <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
     <DataTemplate x:Key="NavMenuItemTemplate">
@@ -164,11 +157,13 @@
             </Grid.ColumnDefinitions>
             <FontIcon FontSize="16" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center"
                       HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
-            <TextBlock Grid.Column="1" Text="{Binding Path=Label}" />
+            <TextBlock Grid.Column="1" Text="{Binding Path=Label}" VerticalAlignment="Center" />
         </Grid>
     </DataTemplate>
 
     <Style TargetType="local:SplitViewMenu">
+        <Setter Property="NavMenuItemContainerStyle" Value="{StaticResource NavMenuItemContainerStyle}" />
+        <Setter Property="NavMenuItemTemplate" Value="{StaticResource NavMenuItemTemplate}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SplitViewMenu">
@@ -200,12 +195,13 @@
                                    IsTabStop="False">
                             <SplitView.Pane>
                                 <local:NavMenuListView x:Name="NavMenuList"
+                                                       ItemsSource="{TemplateBinding NavigationItems}"
                                                        TabIndex="3"
                                                        Margin="0,48,0,0"
-                                                       ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
-                                                       ItemTemplate="{StaticResource NavMenuItemTemplate}">
+                                                       ItemContainerStyle="{TemplateBinding NavMenuItemContainerStyle}"
+                                                       ItemTemplateSelector="{TemplateBinding MenuItemDataTemplateSelector}"
+                                                       ItemTemplate="{TemplateBinding NavMenuItemTemplate}">
                                     <local:NavMenuListView.Header>
-                                        <!-- Using this custom back navigation button until the system-provided back button is enabled. -->
                                         <Button x:Name="BackButton"
                                                 TabIndex="2"
                                                 Style="{StaticResource NavigationBackButtonStyle}"
@@ -216,8 +212,6 @@
                                 </local:NavMenuListView>
                             </SplitView.Pane>
 
-                            <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.
-                 OnNavigatedToPage we move keyboard focus to the first item on the page after it's loaded. -->
                             <Frame x:Name="PageFrame"
                                    Navigating="OnNavigatingToPage"
                                    Navigated="OnNavigatedToPage">
@@ -237,7 +231,6 @@
                                       TabIndex="1"
                                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                                       IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
-                                      Unchecked="TogglePaneButtonChecked"
                                       AutomationProperties.Name="Menu"
                                       ToolTipService.ToolTip="Menu" />
 
@@ -246,4 +239,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>
