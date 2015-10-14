@@ -1,14 +1,13 @@
 ﻿<Page
-    x:Class="SplitViewMenuUWP.MainPage"
+    x:Class="SplitViewMenuUWP.Scenario1.Scenario1Page1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SplitViewMenuUWP"
+    xmlns:local="using:SplitViewMenuUWP.Scenario1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:svm="using:SplitViewMenu"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <svm:SplitViewMenu NavigationItems="{Binding MenuItems}" InitialPage="{Binding InitialPage}"/>
+        <TextBlock Text="Page 1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" />
     </Grid>
 </Page>
