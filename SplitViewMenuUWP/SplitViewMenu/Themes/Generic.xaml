@@ -3,7 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SplitViewMenu">
 
+    <local:EnumToFontFamilyConverter x:Key="EnumToFontFamily"/>
+
     <SolidColorBrush x:Key="SystemAccentBrush" Color="{StaticResource SystemAccentColor}" />
+
+    <FontFamily x:Key="FontAwesomeFontFamily">/Assets/Fonts/FontAwesome.otf#FontAwesome</FontFamily>
 
     <Style x:Key="SplitViewTogglePaneButtonStyle" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="20" />
@@ -206,7 +210,7 @@
                 <ColumnDefinition Width="48" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <FontIcon FontSize="16" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center"
+            <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" FontSize="16" Glyph="{Binding Path=Symbol}" VerticalAlignment="Center"
                       HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
             <TextBlock Grid.Column="1" Text="{Binding Path=Label}" VerticalAlignment="Center" />
         </Grid>
