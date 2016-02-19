@@ -31,6 +31,10 @@ namespace SplitViewMenu
                 typeof (SplitViewMenu),
                 new PropertyMetadata(Enumerable.Empty<INavigationMenuItem>(), OnNavigationItemsPropertyChanged));
 
+        internal static readonly DependencyProperty BackButtonTextProperty =
+           DependencyProperty.Register("BackButtonText", typeof(string),
+               typeof(SplitViewMenu), new PropertyMetadata("Back"));
+
         private Button _backButton;
         private NavMenuListView _navMenuListView;
         private Frame _pageFrame;
@@ -69,6 +73,12 @@ namespace SplitViewMenu
         {
             get { return (IEnumerable<INavigationMenuItem>) GetValue(NavigationItemsProperty); }
             set { SetValue(NavigationItemsProperty, value); }
+        }
+
+        public string BackButtonText
+        {
+            get { return (string)GetValue(BackButtonTextProperty); }
+            set { SetValue(BackButtonTextProperty, value); }
         }
 
         private void OnSplitViewMenuLoaded(object sender, RoutedEventArgs e)
