@@ -16,8 +16,8 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+        <Setter Property="Background" Value="{ThemeResource ToggleButtonMenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource ToggleButtonMenuForegroundBrush}" />
         <Setter Property="Content" Value="&#xE700;" />
         <Setter Property="AutomationProperties.Name" Value="Menu" />
         <Setter Property="UseSystemFocusVisuals" Value="True" />
@@ -33,12 +33,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                                                                        Storyboard.TargetProperty="(Grid.Background)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListLowBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuPointerOverBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuPointerOverForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -47,12 +47,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                                                                        Storyboard.TargetProperty="(Grid.Background)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuPressedBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuPressedForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -61,7 +61,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="(TextBlock.Foreground)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuDisabledForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -71,12 +71,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                                                                        Storyboard.TargetProperty="(Grid.Background)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListLowBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuCheckedPointerOverBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuCheckedPointerOverForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -85,12 +85,12 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
                                                                        Storyboard.TargetProperty="(Grid.Background)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuCheckedPressedBackgroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuCheckedPressedForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -99,7 +99,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="(TextBlock.Foreground)">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                                    Value="{ThemeResource ToggleButtonMenuCheckedDisabledForegroundBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -218,7 +218,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SplitViewMenu">
-                    <Grid>
+                    <Grid> 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
                                 <VisualState>
@@ -243,6 +243,7 @@
                         <SplitView x:Name="RootSplitView"
                                    DisplayMode="Inline"
                                    OpenPaneLength="200"
+                                   PaneBackground="{ThemeResource SplitViewMenuBackgroundBrush}"
                                    IsTabStop="False">
                             <SplitView.Pane>
                                 <local:NavMenuListView x:Name="NavMenuList"
@@ -264,7 +265,7 @@
                                 </local:NavMenuListView>
                             </SplitView.Pane>
 
-                            <Frame x:Name="PageFrame"
+                            <Frame x:Name="PageFrame" 
                                    Navigating="OnNavigatingToPage"
                                    Navigated="OnNavigatedToPage">
                                 <Frame.ContentTransitions>
@@ -279,13 +280,13 @@
                             </Frame>
                         </SplitView>
 
+                        
                         <ToggleButton x:Name="TogglePaneButton"
-                                      TabIndex="1"
-                                      Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                                      IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
-                                      AutomationProperties.Name="Menu"
-                                      ToolTipService.ToolTip="Menu" />
-
+                                          TabIndex="1"
+                                          Style="{StaticResource SplitViewTogglePaneButtonStyle}"
+                                          IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
+                                          AutomationProperties.Name="Menu"
+                                          ToolTipService.ToolTip="Menu" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

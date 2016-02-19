@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--SplitView menu theme resources-->
+    <SolidColorBrush x:Key="SplitViewMenuBackgroundBrush" Color="{ThemeResource SystemChromeLowColor}"/>
+
+    <!--ToggleButton menu theme resources-->
+    <SolidColorBrush x:Key="ToggleButtonMenuBackgroundBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuPointerOverBackgroundBrush" Color="{ThemeResource SystemListLowColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuPressedForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuCheckedPointerOverBackgroundBrush" Color="{ThemeResource SystemListLowColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuCheckedPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuCheckedPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuCheckedPressedForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+    <SolidColorBrush x:Key="ToggleButtonMenuCheckedDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+    <!--end-->
+    
+</ResourceDictionary>
