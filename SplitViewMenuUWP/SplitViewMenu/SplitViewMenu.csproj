@@ -105,16 +105,12 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="Assets\Fonts\fontawesome-webfont.svg" />
-    <Content Include="Assets\Fonts\FontAwesome.otf" />
-    <None Include="Assets\Fonts\fontawesome-webfont.eot" />
-    <Content Include="Assets\Fonts\fontawesome-webfont.ttf" />
-    <None Include="Assets\Fonts\fontawesome-webfont.woff" />
-    <None Include="Assets\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="FontAwesome.otf" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumToFontFamilyConverter.cs" />
+    <Compile Include="FontAwesome.cs" />
     <Compile Include="FontFamily.cs" />
     <Compile Include="INavigationMenuItem.cs" />
     <Compile Include="NavMenuListView.cs" />

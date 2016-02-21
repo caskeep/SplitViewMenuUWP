@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:svm="using:SplitViewMenu"
     mc:Ignorable="d">
+    <Page.Resources>
+        <svm:EnumToFontFamilyConverter x:Key="EnumToFontFamily"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <svm:SplitViewMenu NavigationItems="{Binding MenuItems}" InitialPage="{Binding InitialPage}">
@@ -24,8 +27,8 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <FontIcon FontSize="16" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center"
-                                  HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
+                        <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}"  Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"
+                      HorizontalAlignment="Center" />
                         <TextBlock Grid.Column="1" Text="{Binding Path=Label}" />
                         <Grid Grid.Column="2" Margin="10,0,0,0">
                             <TextBlock Text="{Binding Path=NotifyCount}" VerticalAlignment="Center"

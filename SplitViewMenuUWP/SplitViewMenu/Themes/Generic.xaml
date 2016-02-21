@@ -7,8 +7,6 @@
 
     <SolidColorBrush x:Key="SystemAccentBrush" Color="{StaticResource SystemAccentColor}" />
 
-    <FontFamily x:Key="FontAwesomeFontFamily">/Assets/Fonts/FontAwesome.otf#FontAwesome</FontFamily>
-
     <Style x:Key="SplitViewTogglePaneButtonStyle" TargetType="ToggleButton">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
@@ -203,15 +201,15 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
-
+    <!--"{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" "{Binding Path=Symbol}"-->
     <DataTemplate x:Key="NavMenuItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" FontSize="16" Glyph="{Binding Path=Symbol}" VerticalAlignment="Center"
-                      HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
+            <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"
+                      HorizontalAlignment="Center" />
             <TextBlock Grid.Column="1" Text="{Binding Path=Label}" VerticalAlignment="Center" />
         </Grid>
     </DataTemplate>

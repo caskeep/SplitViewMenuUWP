@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///SplitViewMenu/Themes/SplitViewMenuBrushes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="FontAwesomeFontFamily">ms-appx:///FontAwesome.otf#FontAwesome</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
