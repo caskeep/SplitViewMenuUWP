@@ -266,20 +266,26 @@
                                     </local:NavMenuListView.Header>
                                 </local:NavMenuListView>
                             </SplitView.Pane>
+                            <StackPanel Orientation="Vertical">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  
+                                              Content="{TemplateBinding FrameHeader}"
+                                              AutomationProperties.AccessibilityView="Raw" />
+                                <Frame x:Name="PageFrame"
+                                           Navigating="OnNavigatingToPage"
+                                           Navigated="OnNavigatedToPage">
 
-                            <Frame x:Name="PageFrame" 
-                                   Navigating="OnNavigatingToPage"
-                                   Navigated="OnNavigatedToPage">
-                                <Frame.ContentTransitions>
-                                    <TransitionCollection>
-                                        <NavigationThemeTransition>
-                                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                                <EntranceNavigationTransitionInfo />
-                                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                        </NavigationThemeTransition>
-                                    </TransitionCollection>
-                                </Frame.ContentTransitions>
-                            </Frame>
+                                    <Frame.ContentTransitions>
+                                        <TransitionCollection>
+                                            <NavigationThemeTransition>
+                                                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                                    <EntranceNavigationTransitionInfo />
+                                                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                            </NavigationThemeTransition>
+                                        </TransitionCollection>
+                                    </Frame.ContentTransitions>
+                                </Frame>
+                            </StackPanel>
                         </SplitView>
 
                         
