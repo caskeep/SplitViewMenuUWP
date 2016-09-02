@@ -6,8 +6,9 @@ namespace SplitViewMenuUWP.Scenario2
 {
     public class Scenario2NavMenuIItem : INavigationMenuItem
     {
-        public Symbol Symbol { get; set; }
-        public char SymbolAsChar => (char) Symbol;
+        public int Symbol { get; set; }
+        public char SymbolAsChar => (char)this.Symbol;
+        public FontFamily FontFamilySymbol { get; set; }
         public string Label { get; set; }
         public object Arguments { get; set; }
         public Type DestinationPage { get; set; }

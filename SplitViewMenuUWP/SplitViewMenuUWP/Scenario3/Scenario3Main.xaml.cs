@@ -13,19 +13,19 @@ namespace SplitViewMenuUWP.Scenario3
             {
                 Label = "Page 1",
                 DestinationPage = typeof (Scenario3Page1),
-                Symbol = Symbol.Bookmarks
+                Symbol = (int)Symbol.Bookmarks
             });
             mainViewModel.MenuItems.Add(new SimpleNavMenuItem
             {
                 Label = "Page 2",
                 DestinationPage = typeof (Scenario3Page2),
-                Symbol = Symbol.Emoji
+                Symbol = (int)Symbol.Emoji
             });
             mainViewModel.MenuItems.Add(new SimpleNavMenuItem
             {
                 Label = "Page 3",
                 DestinationPage = typeof (Scenario3Page3),
-                Symbol = Symbol.RotateCamera
+                Symbol = (int)Symbol.RotateCamera
             });
             DataContext = mainViewModel;
         }

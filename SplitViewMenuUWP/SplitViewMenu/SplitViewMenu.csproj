@@ -105,9 +105,15 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumToFontFamilyConverter.cs" />
+    <Compile Include="FontAwesome.cs" />
+    <Compile Include="FontFamily.cs" />
     <Compile Include="INavigationMenuItem.cs" />
     <Compile Include="NavMenuListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +124,11 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SplitViewMenuBrushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

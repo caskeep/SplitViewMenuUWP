@@ -8,14 +8,16 @@
     xmlns:scenario3="using:SplitViewMenuUWP.Scenario3"
     mc:Ignorable="d">
     <Page.Resources>
+
+        <splitViewMenu:EnumToFontFamilyConverter x:Key="EnumToFontFamily"/>
         <DataTemplate x:Key="MenuTemplate1">
             <Grid Background="Azure">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <FontIcon FontSize="16" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center"
-                          HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
+                <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"
+                      HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="1" Text="{Binding Path=Label}" />
             </Grid>
         </DataTemplate>
@@ -29,8 +31,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <FontIcon FontSize="16" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center"
-                          HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Path=Label}" />
+                <FontIcon FontFamily="{Binding FontFamilySymbol,Converter={StaticResource EnumToFontFamily}}" Glyph="{Binding Path=SymbolAsChar}" VerticalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"
+                      HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="1" Text="{Binding Path=Label}" FontWeight="Bold" />
                 <TextBlock Grid.Column="1" Grid.Row="1" FontStyle="Italic" Foreground="Red" Text="(additional info here)" />
             </Grid>
